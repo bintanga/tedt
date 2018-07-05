@@ -121,3 +121,30 @@ if (isset($balas)) {
     $client->replyMessage($balas);
 }
 ?>
+
+if(strtolower($message['text']) == 'contoh'){
+	$balas = array(
+		'UserID' => $userId,
+		'replyToken' => $replyToken,
+		'messages' => array(
+			array(
+			'type' => 'template',
+			'title' => 'Menu :',
+			'altText' => 'Menu :',
+			'template' => array(
+					'type' => 'buttons',
+					'thumbnailImageUrl' => 'urlgambar,
+					'text' => 'Menu :',
+					'actions' => array(
+							array(
+									'type' => 'message',
+									'label' => 'Text',
+									'text' => 'Text'
+							)							
+						)
+				) 
+			)
+		)
+	);
+	$client->replyMessage($balas);
+}
