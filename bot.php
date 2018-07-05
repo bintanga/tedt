@@ -121,7 +121,55 @@ if (isset($balas)) {
     $client->replyMessage($balas);
 }
 ?>
-
+#---------------ntahlah apa ini ------------------------------#
+# ------------------------- [Fungsi] --------------------- ---- #
+function  Cuaca ( $ keyword ) {
+    $ uri  =  " http://api.openweathermap.org/data/2.5/weather?q= "  .  kata kunci $  .  " , ID & units = metrik & appid = e172c2f3a3c620591582ab5242e0e6c4 " ;
+    $ response  =  Unirest \ Request :: get ( " $ uri " );
+    $ json  =  json_decode ( $ response -> raw_body , true );
+    $ result  =  " Halo Kak ^ _ ^ Ini Ada Ramalan Cuaca Untuk Daerah " ;
+	$ result  . =  $ json [ ' name ' ];
+	$ result  . =  " Dan Sekitarnya " ;
+	$ result  . =  " \ n \ n Cuaca: " ;
+	$ result  . =  $ json [ ' cuaca ' ] [ ' 0 ' ] [ ' utama ' ];
+	$ result  . =  " \ n Deskripsi: " ;
+	$ result  . =  $ json [ ' cuaca ' ] [ ' 0 ' ] [ ' deskripsi ' ];
+    kembali  $ hasil ;
+}
+# ------------------------- [Fungsi] --------------------- ---- #
+# require_once ('./ src / function / search-1.php');
+# require_once ('./ src / function / download.php');
+# require_once ('./ src / function / random.php');
+# require_once ('./ src / function / search-2.php');
+# require_once ('./ src / function / hard.php');
+// tampilkan menu, saat bergabung dan perintah / menu
+if ( $ type  ==  ' join '  ||  $ command  ==  ' / menu ' ) {
+    $ text  =  " Halo Kak ^ _ ^ \ n Aku Bot Prediksi Cuaca, Kamu bisa mengetahui nilai cuaca di daerah kamu sesuai dengan BMKG " ;
+    $ balas  =  array (
+        ' replyToken '  =>  $ replyToken ,
+        ' messages '  =>  array (
+            larik (
+                ' type '  =>  ' text ' ,
+                ' text '  =>  $ teks
+            )
+        )
+    );
+}
+// pesan bergambar
+if ( $ message [ ' type ' ] == ' text ' ) {
+	    if ( $ command  ==  ' / Cuaca ' ) {
+        $ result  = Cuaca ( $ opsi );
+        $ balas  =  array (
+            ' replyToken '  =>  $ replyToken ,
+            ' messages '  =>  array (
+                larik (
+                    ' type '  =>  ' text ' ,
+                    ' text '  =>  $ hasil
+                )
+            )
+        );
+    }
+#-----------ini juga haha-----------------------#
 if(strtolower($message['text']) == 'contoh'){
 	$balas = array(
 		'UserID' => $userId,
